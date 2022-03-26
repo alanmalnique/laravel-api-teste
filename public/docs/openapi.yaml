@@ -1,0 +1,1139 @@
+openapi: 3.0.3
+info:
+    title: 'ModifiQ - API'
+    description: ''
+    version: 1.0.0
+servers:
+    -
+        url: 'http://localhost'
+paths:
+    /api/aluno/perfil:
+        get:
+            summary: 'Exibir Perfil'
+            description: 'Retorna os dados do perfil do aluno'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    vazio: true
+                                properties:
+                                    vazio: { type: boolean, example: true }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    vazio: false
+                                    data: { id: 1, nome: 'Aluno de Teste', dtnascimento: '9999-99-99', whatsapp: '(99) 99999-9999', endereco: 'Rua de Teste', numero: '10', complemento: '', bairro: 'Bairro Teste', cep: 99.999-999, email: teste@teste.com, anamnese: { possui_hipertensao: 1, pratica_atividade: 1, quais_atividades: Teste, toma_medicamento: 1, quais_medicamentos: Teste, fumante: 1, fumante_tempo: Teste, possui_doenca: 1, quais_doencas: Teste, apresenta_dor: 1, quais_dores: teste, movimento_dores: Teste, realizou_cirurgia: 1, quais_cirurgias: Teste, tempo_ultima_cirurgia: Teste, objetivo: Teste } }
+                                properties:
+                                    vazio: { type: boolean, example: false }
+                                    data: { type: object, example: { id: 1, nome: 'Aluno de Teste', dtnascimento: '9999-99-99', whatsapp: '(99) 99999-9999', endereco: 'Rua de Teste', numero: '10', complemento: '', bairro: 'Bairro Teste', cep: 99.999-999, email: teste@teste.com, anamnese: { possui_hipertensao: 1, pratica_atividade: 1, quais_atividades: Teste, toma_medicamento: 1, quais_medicamentos: Teste, fumante: 1, fumante_tempo: Teste, possui_doenca: 1, quais_doencas: Teste, apresenta_dor: 1, quais_dores: teste, movimento_dores: Teste, realizou_cirurgia: 1, quais_cirurgias: Teste, tempo_ultima_cirurgia: Teste, objetivo: Teste } } }
+            tags:
+                - 'Aluno / Dados'
+        put:
+            summary: 'Atualizar Perfil'
+            description: 'Atualiza os dados do perfil do aluno'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: true
+                                    mensagem: 'Não foi possível alterar os dados do aluno'
+                                properties:
+                                    erro: { type: boolean, example: true }
+                                    mensagem: { type: string, example: 'Não foi possível alterar os dados do aluno' }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: false
+                                properties:
+                                    erro: { type: boolean, example: false }
+            tags:
+                - 'Aluno / Dados'
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                nome:
+                                    type: string
+                                    description: 'Nome do aluno.'
+                                    example: 'Fulano de Tal'
+                                dtnascimento:
+                                    type: string
+                                    description: 'Data de nascimento do aluno.'
+                                    example: '9999-99-99'
+                                whatsapp:
+                                    type: string
+                                    description: 'Whatsapp do aluno.'
+                                    example: '(99) 99999-9999'
+                                endereco:
+                                    type: string
+                                    description: 'Endereço do aluno.'
+                                    example: 'Rua de Teste'
+                                numero:
+                                    type: string
+                                    description: 'Número do endereço do aluno.'
+                                    example: '12345'
+                                complemento:
+                                    type: string
+                                    description: 'Complemento do endereço do aluno.'
+                                    example: ''
+                                bairro:
+                                    type: string
+                                    description: 'Bairro do endereço do aluno.'
+                                    example: 'Bairro Teste'
+                                cep:
+                                    type: string
+                                    description: 'CEP do endereço do aluno.'
+                                    example: 99.999-99
+                                email:
+                                    type: string
+                                    description: 'Email do aluno.'
+                                    example: teste@teste.com
+                                senha:
+                                    type: string
+                                    description: 'Senha do aluno.'
+                                    example: teste123
+                                anamnese:
+                                    type: object
+                                    description: ''
+                                    example: []
+                                    properties: { possui_hipertensao: { type: string, description: 'Aluno possui hipertensão.', example: 1 }, pratica_atividade: { type: string, description: 'Aluno pratica atividade física.', example: 1 }, quais_atividades: { type: string, description: 'Quais atividades.', example: 'Basquete, Futebol' }, toma_medicamento: { type: string, description: 'Aluno toma algum medicamento.', example: 0 }, quais_medicamentos: { type: string, description: 'Quais medicamentos.', example: '' }, fumante: { type: string, description: 'Aluno fumante.', example: 1 }, fumante_tempo: { type: string, description: 'Fuma há quanto tempo.', example: '1 ano' }, possui_doenca: { type: string, description: 'Aluno possui doença.', example: 1 }, quais_doencas: { type: string, description: 'Quais doenças.', example: Diabetes }, apresenta_dor: { type: string, description: 'Aluno apresenta dor.', example: 0 }, quais_dores: { type: string, description: 'Quais dores.', example: '' }, movimento_dores: { type: string, description: 'Quais movimentos sente dores.', example: '' }, realizou_cirurgia: { type: string, description: 'Aluno realizou cirurgia.', example: 1 }, quais_cirurgias: { type: string, description: 'Quais cirurgias.', example: Clavicula }, tempo_ultima_cirurgia: { type: string, description: 'Tempo última cirurgia.', example: '1 ano' }, objetivo: { type: string, description: 'Objetivo do aluno.', example: Hipertrofia } }
+                            required:
+                                - nome
+                                - dtnascimento
+                                - whatsapp
+                                - endereco
+                                - numero
+                                - bairro
+                                - cep
+                                - email
+    /api/aluno/login:
+        post:
+            summary: Login
+            description: 'Realiza o login para utilizar o painel'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: true
+                                    mensagem: 'Usuário e/ou senha inválido!'
+                                properties:
+                                    erro: { type: boolean, example: true }
+                                    mensagem: { type: string, example: 'Usuário e/ou senha inválido!' }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: false
+                                    data: { id: 1, nome: 'Aluno de Teste', arquivo: 1, token: ... }
+                                properties:
+                                    erro: { type: boolean, example: false }
+                                    data: { type: object, example: { id: 1, nome: 'Aluno de Teste', arquivo: 1, token: ... } }
+            tags:
+                - 'Aluno / Onboarding'
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    description: 'Email do aluno.'
+                                    example: teste@teste.com
+                                senha:
+                                    type: string
+                                    description: 'Senha do aluno.'
+                                    example: teste123
+                            required:
+                                - email
+                                - senha
+            security: []
+    '/api/geral/arquivo/{arq_id}/baixar':
+        get:
+            summary: 'Baixar arquivo'
+            description: 'Método para baixar arquivo'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: true
+                                    mensagem: 'Arquivo não encontrado'
+                                properties:
+                                    erro: { type: boolean, example: true }
+                                    mensagem: { type: string, example: 'Arquivo não encontrado' }
+            tags:
+                - 'Geral / Arquivo'
+            security: []
+        parameters:
+            -
+                in: path
+                name: arq_id
+                description: 'ID do arquivo'
+                example: ut
+                required: true
+                schema:
+                    type: string
+    '/api/geral/arquivo/{arq_id}/ver':
+        get:
+            summary: 'Ver arquivo'
+            description: 'Método para baixar arquivo'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: true
+                                    mensagem: 'Arquivo não encontrado'
+                                properties:
+                                    erro: { type: boolean, example: true }
+                                    mensagem: { type: string, example: 'Arquivo não encontrado' }
+            tags:
+                - 'Geral / Arquivo'
+            security: []
+        parameters:
+            -
+                in: path
+                name: arq_id
+                description: 'ID do arquivo'
+                example: exercitationem
+                required: true
+                schema:
+                    type: string
+    '/api/geral/arquivo/{arq_id}/dados':
+        get:
+            summary: 'Dados do arquivo'
+            description: 'Método para ver dados do arquivo'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    arq_id: 1
+                                    arq_data: '2020-06-09'
+                                    arq_pasta: teste
+                                    arq_extensao: png
+                                    arq_nome: logo.png
+                                    filepath: /path/to/storage/5.png
+                                properties:
+                                    arq_id: { type: integer, example: 1 }
+                                    arq_data: { type: string, example: '2020-06-09' }
+                                    arq_pasta: { type: string, example: teste }
+                                    arq_extensao: { type: string, example: png }
+                                    arq_nome: { type: string, example: logo.png }
+                                    filepath: { type: string, example: /path/to/storage/5.png }
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: true
+                                    mensagem: 'Arquivo não encontrado'
+                                properties:
+                                    erro: { type: boolean, example: true }
+                                    mensagem: { type: string, example: 'Arquivo não encontrado' }
+            tags:
+                - 'Geral / Arquivo'
+            security: []
+        parameters:
+            -
+                in: path
+                name: arq_id
+                description: 'ID do arquivo'
+                example: architecto
+                required: true
+                schema:
+                    type: string
+    /api/geral/blog:
+        get:
+            summary: 'Listar Notícias'
+            description: 'Método para listar as notícias'
+            parameters:
+                -
+                    in: query
+                    name: perPage
+                    description: 'Registros por página'
+                    example: 3
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Registros por página'
+                        example: 3
+                -
+                    in: query
+                    name: page
+                    description: Página
+                    example: 8
+                    required: false
+                    schema:
+                        type: integer
+                        description: Página
+                        example: 8
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    current_page: 1
+                                    data: [{ id: 1, titulo: 'Quem Somos', resumo: ..., data: '9999-99-99', arquivo: 1, parceiro: { id: 1, nome: Testes, arquivo: 1 } }]
+                                    first_page_url: 'http://domain/api/geral/blog?page=1'
+                                    from: 1
+                                    last_page: 1
+                                    last_page_url: 'http://domain/api/geral/blog?page=1'
+                                    next_page_url: null
+                                    path: 'http://domain/api/geral/blog'
+                                    per_page: 20
+                                    prev_page_url: null
+                                    to: 1
+                                    total: 1
+                                properties:
+                                    current_page: { type: integer, example: 1 }
+                                    data: { type: array, example: [{ id: 1, titulo: 'Quem Somos', resumo: ..., data: '9999-99-99', arquivo: 1, parceiro: { id: 1, nome: Testes, arquivo: 1 } }], items: { type: object } }
+                                    first_page_url: { type: string, example: 'http://domain/api/geral/blog?page=1' }
+                                    from: { type: integer, example: 1 }
+                                    last_page: { type: integer, example: 1 }
+                                    last_page_url: { type: string, example: 'http://domain/api/geral/blog?page=1' }
+                                    next_page_url: { type: string, example: null }
+                                    path: { type: string, example: 'http://domain/api/geral/blog' }
+                                    per_page: { type: integer, example: 20 }
+                                    prev_page_url: { type: string, example: null }
+                                    to: { type: integer, example: 1 }
+                                    total: { type: integer, example: 1 }
+            tags:
+                - 'Geral / Blog'
+            security: []
+    '/api/geral/blog/{blog}':
+        get:
+            summary: 'Consultar Notícia'
+            description: 'Método para consultar os dados de um registro de notícia'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: true
+                                    mensagem: 'Os dados da notícia não foram encontrados'
+                                properties:
+                                    erro: { type: boolean, example: true }
+                                    mensagem: { type: string, example: 'Os dados da notícia não foram encontrados' }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: false
+                                    data: { id: 1, titulo: 'Quem Somos', resumo: ..., texto: ..., datahora: '9999-99-99 99:99:99', arquivo: 1, parceiro: { id: 1, nome: Testes, url: ..., arquivo: 1 } }
+                                properties:
+                                    erro: { type: boolean, example: false }
+                                    data: { type: object, example: { id: 1, titulo: 'Quem Somos', resumo: ..., texto: ..., datahora: '9999-99-99 99:99:99', arquivo: 1, parceiro: { id: 1, nome: Testes, url: ..., arquivo: 1 } } }
+            tags:
+                - 'Geral / Blog'
+            security: []
+        parameters:
+            -
+                in: path
+                name: blog
+                description: ''
+                example: placeat
+                required: true
+                schema:
+                    type: string
+            -
+                in: path
+                name: id
+                description: 'ID da notícia'
+                example: ut
+                required: true
+                schema:
+                    type: string
+    /api/geral/consultacep:
+        post:
+            summary: 'Consulta os dados de um CEP'
+            description: 'Método para consultar os dados de um CEP'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: true
+                                    mensagem: 'CEP não encontrado'
+                                properties:
+                                    erro: { type: boolean, example: true }
+                                    mensagem: { type: string, example: 'CEP não encontrado' }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: false
+                                    data: { cep: 01001-000, logradouro: 'Praça da Sé', complemento: 'lado ímpar', bairro: Sé, localidade: 'São Paulo', uf: SP, unidade: '', ibge: '3550308', gia: '1004' }
+                                properties:
+                                    erro: { type: boolean, example: false }
+                                    data: { type: object, example: { cep: 01001-000, logradouro: 'Praça da Sé', complemento: 'lado ímpar', bairro: Sé, localidade: 'São Paulo', uf: SP, unidade: '', ibge: '3550308', gia: '1004' } }
+            tags:
+                - 'Geral / Consultas'
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                cep:
+                                    type: string
+                                    description: 'CEP para a consulta.'
+                                    example: 18.682-050
+                            required:
+                                - cep
+            security: []
+    /api/geral/faleconosco:
+        post:
+            summary: 'Fale Conosco'
+            description: 'Método para enviar um email de contato'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: true
+                                    mensagem: 'Não foi possível enviar o email'
+                                properties:
+                                    erro: { type: boolean, example: true }
+                                    mensagem: { type: string, example: 'Não foi possível enviar o email' }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: false
+                                properties:
+                                    erro: { type: boolean, example: false }
+            tags:
+                - 'Geral / Contato'
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                nome:
+                                    type: string
+                                    description: 'Nome do contato.'
+                                    example: 'Fulano de Tal'
+                                celular:
+                                    type: string
+                                    description: 'Celular do contato.'
+                                    example: '(99) 99999-9999'
+                                email:
+                                    type: string
+                                    description: 'Email do contato.'
+                                    example: fulanodetal@outlook.com
+                                assunto:
+                                    type: string
+                                    description: 'Assunto do contato.'
+                                    example: Dúvidas
+                                mensagem:
+                                    type: string
+                                    description: 'Mensagem do contato.'
+                                    example: 'Gostaria de saber como baixar o app.'
+                            required:
+                                - nome
+                                - celular
+                                - email
+                                - assunto
+                                - mensagem
+            security: []
+    '/api/geral/institucional/listar/{categoria}':
+        get:
+            summary: 'Listar Institucional'
+            description: 'Método para listar os dados institucionais da categoria'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    vazio: true
+                                properties:
+                                    vazio: { type: boolean, example: true }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    vazio: false
+                                    data: [{ id: 1, titulo: 'Termos de uso', texto: ... }]
+                                properties:
+                                    vazio: { type: boolean, example: false }
+                                    data: { type: array, example: [{ id: 1, titulo: 'Termos de uso', texto: ... }], items: { type: object } }
+            tags:
+                - 'Geral / Institucional'
+            security: []
+        parameters:
+            -
+                in: path
+                name: categoria
+                description: 'ID da categoria institucional'
+                example: veritatis
+                required: true
+                schema:
+                    type: string
+    '/api/geral/institucional/detalhes/{id}':
+        get:
+            summary: 'Consultar Institucional'
+            description: 'Método para consultar os dados de um registro institucional'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: true
+                                    mensagem: 'Os dados institucionais não foram encontrados'
+                                properties:
+                                    erro: { type: boolean, example: true }
+                                    mensagem: { type: string, example: 'Os dados institucionais não foram encontrados' }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: false
+                                    data: { id: 1, titulo: 'Termos de uso', texto: ... }
+                                properties:
+                                    erro: { type: boolean, example: false }
+                                    data: { type: object, example: { id: 1, titulo: 'Termos de uso', texto: ... } }
+            tags:
+                - 'Geral / Institucional'
+            security: []
+        parameters:
+            -
+                in: path
+                name: id
+                description: 'ID do institucional'
+                example: ipsa
+                required: true
+                schema:
+                    type: string
+    /api/geral/institucional/categorias:
+        get:
+            summary: 'Listar Categorias'
+            description: 'Método para listar as categorias de institucional'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    vazio: true
+                                properties:
+                                    vazio: { type: boolean, example: true }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    vazio: false
+                                    data: [{ id: 1, titulo: 'Quem Somos', resumo: ..., arquivo: 1 }]
+                                properties:
+                                    vazio: { type: boolean, example: false }
+                                    data: { type: array, example: [{ id: 1, titulo: 'Quem Somos', resumo: ..., arquivo: 1 }], items: { type: object } }
+            tags:
+                - 'Geral / Institucional'
+            security: []
+    '/api/geral/institucional/categorias/{id}':
+        get:
+            summary: 'Consultar Categoria'
+            description: 'Método para mostar os detalhes de uma categoria institucional'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    vazio: true
+                                properties:
+                                    vazio: { type: boolean, example: true }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    vazio: false
+                                    data: { id: 1, titulo: 'Quem Somos', resumo: ..., arquivo: 1 }
+                                properties:
+                                    vazio: { type: boolean, example: false }
+                                    data: { type: object, example: { id: 1, titulo: 'Quem Somos', resumo: ..., arquivo: 1 } }
+            tags:
+                - 'Geral / Institucional'
+            security: []
+        parameters:
+            -
+                in: path
+                name: id
+                description: 'ID da categoria institucional'
+                example: ea
+                required: true
+                schema:
+                    type: string
+    /api/geral/parceiros:
+        get:
+            summary: 'Listar Parceiros'
+            description: 'Método para listar os parceiros'
+            parameters:
+                -
+                    in: query
+                    name: perPage
+                    description: 'Registros por página'
+                    example: 5
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Registros por página'
+                        example: 5
+                -
+                    in: query
+                    name: page
+                    description: Página
+                    example: 2
+                    required: false
+                    schema:
+                        type: integer
+                        description: Página
+                        example: 2
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    current_page: 1
+                                    data: [{ id: 1, nome: 'Quem Somos', descricao: ..., link: ..., arquivo: 1 }]
+                                    first_page_url: 'http://domain/api/geral/parceiros?page=1'
+                                    from: 1
+                                    last_page: 1
+                                    last_page_url: 'http://domain/api/geral/parceiros?page=1'
+                                    next_page_url: null
+                                    path: 'http://domain/api/geral/parceiros'
+                                    per_page: 20
+                                    prev_page_url: null
+                                    to: 1
+                                    total: 1
+                                properties:
+                                    current_page: { type: integer, example: 1 }
+                                    data: { type: array, example: [{ id: 1, nome: 'Quem Somos', descricao: ..., link: ..., arquivo: 1 }], items: { type: object } }
+                                    first_page_url: { type: string, example: 'http://domain/api/geral/parceiros?page=1' }
+                                    from: { type: integer, example: 1 }
+                                    last_page: { type: integer, example: 1 }
+                                    last_page_url: { type: string, example: 'http://domain/api/geral/parceiros?page=1' }
+                                    next_page_url: { type: string, example: null }
+                                    path: { type: string, example: 'http://domain/api/geral/parceiros' }
+                                    per_page: { type: integer, example: 20 }
+                                    prev_page_url: { type: string, example: null }
+                                    to: { type: integer, example: 1 }
+                                    total: { type: integer, example: 1 }
+            tags:
+                - 'Geral / Parceiros'
+            security: []
+    /api/geral/plano:
+        get:
+            summary: 'Listar Planos'
+            description: 'Método para listar os planos'
+            parameters:
+                -
+                    in: query
+                    name: perPage
+                    description: 'Registros por página'
+                    example: 12
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Registros por página'
+                        example: 12
+                -
+                    in: query
+                    name: page
+                    description: Página
+                    example: 5
+                    required: false
+                    schema:
+                        type: integer
+                        description: Página
+                        example: 5
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    current_page: 1
+                                    data: [{ id: 1, titulo: 'Quem Somos', resumo: ..., valor: !!float 250, arquivo: 1 }]
+                                    first_page_url: 'http://domain/api/geral/plano?page=1'
+                                    from: 1
+                                    last_page: 1
+                                    last_page_url: 'http://domain/api/geral/plano?page=1'
+                                    next_page_url: null
+                                    path: 'http://domain/api/geral/plano'
+                                    per_page: 20
+                                    prev_page_url: null
+                                    to: 1
+                                    total: 1
+                                properties:
+                                    current_page: { type: integer, example: 1 }
+                                    data: { type: array, example: [{ id: 1, titulo: 'Quem Somos', resumo: ..., valor: !!float 250, arquivo: 1 }], items: { type: object } }
+                                    first_page_url: { type: string, example: 'http://domain/api/geral/plano?page=1' }
+                                    from: { type: integer, example: 1 }
+                                    last_page: { type: integer, example: 1 }
+                                    last_page_url: { type: string, example: 'http://domain/api/geral/plano?page=1' }
+                                    next_page_url: { type: string, example: null }
+                                    path: { type: string, example: 'http://domain/api/geral/plano' }
+                                    per_page: { type: integer, example: 20 }
+                                    prev_page_url: { type: string, example: null }
+                                    to: { type: integer, example: 1 }
+                                    total: { type: integer, example: 1 }
+            tags:
+                - 'Geral / Planos'
+            security: []
+    '/api/geral/plano/{plano}':
+        get:
+            summary: 'Consultar Plano'
+            description: 'Método para consultar os dados de um registro de plano'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: true
+                                    mensagem: 'Os dados do plano não foram encontrados'
+                                properties:
+                                    erro: { type: boolean, example: true }
+                                    mensagem: { type: string, example: 'Os dados do plano não foram encontrados' }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: false
+                                    data: { id: 1, titulo: Biolivre, valor: 250, resumo: ..., descricao: ..., arquivo: 1 }
+                                properties:
+                                    erro: { type: boolean, example: false }
+                                    data: { type: object, example: { id: 1, titulo: Biolivre, valor: 250, resumo: ..., descricao: ..., arquivo: 1 } }
+            tags:
+                - 'Geral / Planos'
+            security: []
+        parameters:
+            -
+                in: path
+                name: plano
+                description: ''
+                example: et
+                required: true
+                schema:
+                    type: string
+            -
+                in: path
+                name: id
+                description: 'ID do plano'
+                example: dolores
+                required: true
+                schema:
+                    type: string
+    /api/professor/login:
+        post:
+            summary: Login
+            description: 'Realiza o login para utilizar o painel'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                400:
+                    description: '400'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: true
+                                    mensagem: 'Usuário e/ou senha inválido!'
+                                properties:
+                                    erro: { type: boolean, example: true }
+                                    mensagem: { type: string, example: 'Usuário e/ou senha inválido!' }
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    erro: false
+                                    data: { id: 1, nome: 'Professor de teste', arquivo: 1, token: ... }
+                                properties:
+                                    erro: { type: boolean, example: false }
+                                    data: { type: object, example: { id: 1, nome: 'Professor de teste', arquivo: 1, token: ... } }
+            tags:
+                - 'Professor / Onboarding'
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    description: 'Email do professor.'
+                                    example: teste@teste.com
+                                senha:
+                                    type: string
+                                    description: 'Senha do professor.'
+                                    example: teste123
+                            required:
+                                - email
+                                - senha
+            security: []

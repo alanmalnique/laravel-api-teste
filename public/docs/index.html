@@ -1,0 +1,3285 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>ModifiQ - API</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/style.css" media="screen" />
+        <link rel="stylesheet" href="css/print.css" media="print" />
+        <script src="js/all.js"></script>
+
+        <link rel="stylesheet" href="css/highlight-darcula.css" media="" />
+        <script src="js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="" data-languages="[&quot;php&quot;,&quot;bash&quot;,&quot;javascript&quot;]">
+<a href="#" id="nav-button">
+      <span>
+        NAV
+            <img src="images/navbar.png" alt="-image" class=""/>
+      </span>
+</a>
+<div class="tocify-wrapper">
+                <div class="lang-selector">
+                            <a href="#" data-language-name="php">php</a>
+                            <a href="#" data-language-name="bash">bash</a>
+                            <a href="#" data-language-name="javascript">javascript</a>
+                    </div>
+        <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+    <ul class="search-results"></ul>
+
+    <ul id="toc">
+    </ul>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="./collection.json">View Postman collection</a></li>
+                            <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
+                    </ul>
+            <ul class="toc-footer" id="last-updated">
+            <li>Last updated: August 17 2021</li>
+        </ul>
+</div>
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1>Introduction</h1>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://api.modfiq.natus</code></pre><h1>Authenticating requests</h1>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>Aluno / Aula</h1>
+<p>APIs para gerenciar as aulas de alunos</p>
+<h2>Listar Horários</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Retorna os horários de aula  do aluno</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/aluno/horarios',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/aluno/horarios" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/aluno/horarios"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": true
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": false,
+    "data": [
+        {
+            "diasemana": 1,
+            "horario": "19:00:00",
+            "professor": "Professor de teste"
+        }
+    ]
+}</code></pre>
+<div id="execution-results-GETapi-aluno-horarios" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-aluno-horarios"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-aluno-horarios"></code></pre>
+</div>
+<div id="execution-error-GETapi-aluno-horarios" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-aluno-horarios"></code></pre>
+</div>
+<form id="form-GETapi-aluno-horarios" data-method="GET" data-path="api/aluno/horarios" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-aluno-horarios', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/aluno/horarios</code></b>
+</p>
+<p>
+<label id="auth-GETapi-aluno-horarios" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-aluno-horarios" data-component="header"></label>
+</p>
+</form>
+<h2>Salvar Aula</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Grava o horário de entrada e saída</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://api.modfiq.natus/api/aluno/aula',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'tipo' =&gt; 4,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X POST \
+    "http://api.modfiq.natus/api/aluno/aula" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"tipo":4}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/aluno/aula"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "tipo": 4
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Não foi possível salvar o horário"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": false,
+    "data": {
+        "url": "..."
+    }
+}</code></pre>
+<div id="execution-results-POSTapi-aluno-aula" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-aluno-aula"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-aluno-aula"></code></pre>
+</div>
+<div id="execution-error-POSTapi-aluno-aula" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-aluno-aula"></code></pre>
+</div>
+<form id="form-POSTapi-aluno-aula" data-method="POST" data-path="api/aluno/aula" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-aluno-aula', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/aluno/aula</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-aluno-aula" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-aluno-aula" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>tipo</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="tipo" data-endpoint="POSTapi-aluno-aula" data-component="body" required  hidden>
+<br>
+Tipo de registro (1-Entrada, 2-Saída)</p>
+
+</form><h1>Aluno / Dados</h1>
+<p>APIs para gerenciar os dados das contas de alunos</p>
+<h2>Exibir Perfil</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Retorna os dados do perfil do aluno</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/aluno/perfil',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/aluno/perfil" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/aluno/perfil"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": true
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": false,
+    "data": {
+        "id": 1,
+        "nome": "Aluno de Teste",
+        "dtnascimento": "9999-99-99",
+        "whatsapp": "(99) 99999-9999",
+        "endereco": "Rua de Teste",
+        "numero": "10",
+        "complemento": "",
+        "bairro": "Bairro Teste",
+        "cep": "99.999-999",
+        "email": "teste@teste.com",
+        "anamnese": {
+            "possui_hipertensao": 1,
+            "pratica_atividade": 1,
+            "quais_atividades": "Teste",
+            "toma_medicamento": 1,
+            "quais_medicamentos": "Teste",
+            "fumante": 1,
+            "fumante_tempo": "Teste",
+            "possui_doenca": 1,
+            "quais_doencas": "Teste",
+            "apresenta_dor": 1,
+            "quais_dores": "teste",
+            "movimento_dores": "Teste",
+            "realizou_cirurgia": 1,
+            "quais_cirurgias": "Teste",
+            "tempo_ultima_cirurgia": "Teste",
+            "objetivo": "Teste"
+        }
+    }
+}</code></pre>
+<div id="execution-results-GETapi-aluno-perfil" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-aluno-perfil"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-aluno-perfil"></code></pre>
+</div>
+<div id="execution-error-GETapi-aluno-perfil" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-aluno-perfil"></code></pre>
+</div>
+<form id="form-GETapi-aluno-perfil" data-method="GET" data-path="api/aluno/perfil" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-aluno-perfil', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/aluno/perfil</code></b>
+</p>
+<p>
+<label id="auth-GETapi-aluno-perfil" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-aluno-perfil" data-component="header"></label>
+</p>
+</form>
+<h2>Atualizar Perfil</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Atualiza os dados do perfil do aluno</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://api.modfiq.natus/api/aluno/perfil',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'nome' =&gt; 'Fulano de Tal',
+            'dtnascimento' =&gt; '99/99/9999',
+            'whatsapp' =&gt; '(99) 99999-9999',
+            'endereco' =&gt; 'Rua de Teste',
+            'numero' =&gt; '12345',
+            'complemento' =&gt; '',
+            'bairro' =&gt; 'Bairro Teste',
+            'cep' =&gt; '99.999-99',
+            'email' =&gt; 'teste@teste.com',
+            'senha' =&gt; 'teste123',
+            'anamnese' =&gt; [
+                'possui_hipertensao' =&gt; 1,
+                'pratica_atividade' =&gt; 1,
+                'quais_atividades' =&gt; 'Basquete, Futebol',
+                'toma_medicamento' =&gt; 0,
+                'quais_medicamentos' =&gt; '',
+                'fumante' =&gt; 1,
+                'fumante_tempo' =&gt; '1 ano',
+                'possui_doenca' =&gt; 1,
+                'quais_doencas' =&gt; 'Diabetes',
+                'apresenta_dor' =&gt; 0,
+                'quais_dores' =&gt; '',
+                'movimento_dor' =&gt; '',
+                'realizou_cirurgia' =&gt; 1,
+                'quais_cirurgias' =&gt; 'Clavicula',
+                'tempo_ultima_cirurgia' =&gt; '1 ano',
+                'objetivo' =&gt; 'Hipertrofia',
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X PUT \
+    "http://api.modfiq.natus/api/aluno/perfil" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"nome":"Fulano de Tal","dtnascimento":"99\/99\/9999","whatsapp":"(99) 99999-9999","endereco":"Rua de Teste","numero":"12345","complemento":"","bairro":"Bairro Teste","cep":"99.999-99","email":"teste@teste.com","senha":"teste123","anamnese":{"possui_hipertensao":1,"pratica_atividade":1,"quais_atividades":"Basquete, Futebol","toma_medicamento":0,"quais_medicamentos":"","fumante":1,"fumante_tempo":"1 ano","possui_doenca":1,"quais_doencas":"Diabetes","apresenta_dor":0,"quais_dores":"","movimento_dor":"","realizou_cirurgia":1,"quais_cirurgias":"Clavicula","tempo_ultima_cirurgia":"1 ano","objetivo":"Hipertrofia"}}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/aluno/perfil"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "nome": "Fulano de Tal",
+    "dtnascimento": "99\/99\/9999",
+    "whatsapp": "(99) 99999-9999",
+    "endereco": "Rua de Teste",
+    "numero": "12345",
+    "complemento": "",
+    "bairro": "Bairro Teste",
+    "cep": "99.999-99",
+    "email": "teste@teste.com",
+    "senha": "teste123",
+    "anamnese": {
+        "possui_hipertensao": 1,
+        "pratica_atividade": 1,
+        "quais_atividades": "Basquete, Futebol",
+        "toma_medicamento": 0,
+        "quais_medicamentos": "",
+        "fumante": 1,
+        "fumante_tempo": "1 ano",
+        "possui_doenca": 1,
+        "quais_doencas": "Diabetes",
+        "apresenta_dor": 0,
+        "quais_dores": "",
+        "movimento_dor": "",
+        "realizou_cirurgia": 1,
+        "quais_cirurgias": "Clavicula",
+        "tempo_ultima_cirurgia": "1 ano",
+        "objetivo": "Hipertrofia"
+    }
+}
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Não foi possível alterar os dados do aluno"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": false
+}</code></pre>
+<div id="execution-results-PUTapi-aluno-perfil" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-aluno-perfil"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-aluno-perfil"></code></pre>
+</div>
+<div id="execution-error-PUTapi-aluno-perfil" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-aluno-perfil"></code></pre>
+</div>
+<form id="form-PUTapi-aluno-perfil" data-method="PUT" data-path="api/aluno/perfil" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-aluno-perfil', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-darkblue">PUT</small>
+ <b><code>api/aluno/perfil</code></b>
+</p>
+<p>
+<label id="auth-PUTapi-aluno-perfil" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="PUTapi-aluno-perfil" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>nome</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="nome" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Nome do aluno.</p>
+<p>
+<b><code>dtnascimento</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="dtnascimento" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Data de nascimento do aluno.</p>
+<p>
+<b><code>whatsapp</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="whatsapp" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Whatsapp do aluno.</p>
+<p>
+<b><code>endereco</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="endereco" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Endereço do aluno.</p>
+<p>
+<b><code>numero</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="numero" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Número do endereço do aluno.</p>
+<p>
+<b><code>complemento</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="complemento" data-endpoint="PUTapi-aluno-perfil" data-component="body"  hidden>
+<br>
+Complemento do endereço do aluno.</p>
+<p>
+<b><code>bairro</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bairro" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Bairro do endereço do aluno.</p>
+<p>
+<b><code>cep</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="cep" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+CEP do endereço do aluno.</p>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Email do aluno.</p>
+<p>
+<b><code>senha</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="senha" data-endpoint="PUTapi-aluno-perfil" data-component="body"  hidden>
+<br>
+Senha do aluno.</p>
+<p>
+<details>
+<summary>
+<b><code>anamnese</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+</summary>
+<br>
+<p>
+<b><code>anamnese.possui_hipertensao</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.possui_hipertensao" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Aluno possui hipertensão.</p>
+<p>
+<b><code>anamnese.pratica_atividade</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.pratica_atividade" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Aluno pratica atividade física.</p>
+<p>
+<b><code>anamnese.quais_atividades</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.quais_atividades" data-endpoint="PUTapi-aluno-perfil" data-component="body"  hidden>
+<br>
+Quais atividades.</p>
+<p>
+<b><code>anamnese.toma_medicamento</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.toma_medicamento" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Aluno toma algum medicamento.</p>
+<p>
+<b><code>anamnese.quais_medicamentos</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.quais_medicamentos" data-endpoint="PUTapi-aluno-perfil" data-component="body"  hidden>
+<br>
+Quais medicamentos.</p>
+<p>
+<b><code>anamnese.fumante</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.fumante" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Aluno fumante.</p>
+<p>
+<b><code>anamnese.fumante_tempo</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.fumante_tempo" data-endpoint="PUTapi-aluno-perfil" data-component="body"  hidden>
+<br>
+Fuma há quanto tempo.</p>
+<p>
+<b><code>anamnese.possui_doenca</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.possui_doenca" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Aluno possui doença.</p>
+<p>
+<b><code>anamnese.quais_doencas</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.quais_doencas" data-endpoint="PUTapi-aluno-perfil" data-component="body"  hidden>
+<br>
+Quais doenças.</p>
+<p>
+<b><code>anamnese.apresenta_dor</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.apresenta_dor" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Aluno apresenta dor.</p>
+<p>
+<b><code>anamnese.quais_dores</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.quais_dores" data-endpoint="PUTapi-aluno-perfil" data-component="body"  hidden>
+<br>
+Quais dores.</p>
+<p>
+<b><code>anamnese.movimento_dor</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.movimento_dor" data-endpoint="PUTapi-aluno-perfil" data-component="body"  hidden>
+<br>
+Quais movimentos sente dores.</p>
+<p>
+<b><code>anamnese.realizou_cirurgia</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.realizou_cirurgia" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Aluno realizou cirurgia.</p>
+<p>
+<b><code>anamnese.quais_cirurgias</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.quais_cirurgias" data-endpoint="PUTapi-aluno-perfil" data-component="body"  hidden>
+<br>
+Quais cirurgias.</p>
+<p>
+<b><code>anamnese.tempo_ultima_cirurgia</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.tempo_ultima_cirurgia" data-endpoint="PUTapi-aluno-perfil" data-component="body"  hidden>
+<br>
+Tempo última cirurgia.</p>
+<p>
+<b><code>anamnese.objetivo</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.objetivo" data-endpoint="PUTapi-aluno-perfil" data-component="body" required  hidden>
+<br>
+Objetivo do aluno.</p>
+</details>
+</p>
+
+</form><h1>Aluno / Mensalidade</h1>
+<p>APIs para gerenciar as mensalidades das contas de alunos</p>
+<h2>Mensalidade</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Retorna os dados da mensalidade do aluno</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/aluno/mensalidade',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/aluno/mensalidade" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/aluno/mensalidade"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">
+{
+{
+     "dtvencimento": "9999-99-99"
+     "descricao": "Mensal",
+     "valor": 150,
+     "historico": [
+         {
+             "valor": 150,
+             "dtpagto": "9999-99-99"
+         }
+     ]
+}</code></pre>
+<div id="execution-results-GETapi-aluno-mensalidade" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-aluno-mensalidade"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-aluno-mensalidade"></code></pre>
+</div>
+<div id="execution-error-GETapi-aluno-mensalidade" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-aluno-mensalidade"></code></pre>
+</div>
+<form id="form-GETapi-aluno-mensalidade" data-method="GET" data-path="api/aluno/mensalidade" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-aluno-mensalidade', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/aluno/mensalidade</code></b>
+</p>
+<p>
+<label id="auth-GETapi-aluno-mensalidade" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-aluno-mensalidade" data-component="header"></label>
+</p>
+</form>
+<h2>Pagamento</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Realiza o pagamento da mensalidade</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://api.modfiq.natus/api/aluno/pagamento',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'numero' =&gt; '9999 9999 9999 9999',
+            'mes' =&gt; '01',
+            'ano' =&gt; '2026',
+            'cvv' =&gt; '123',
+            'bandeira' =&gt; 2,
+            'titular' =&gt; 'Nome de Teste',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X POST \
+    "http://api.modfiq.natus/api/aluno/pagamento" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"numero":"9999 9999 9999 9999","mes":"01","ano":"2026","cvv":"123","bandeira":2,"titular":"Nome de Teste"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/aluno/pagamento"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "numero": "9999 9999 9999 9999",
+    "mes": "01",
+    "ano": "2026",
+    "cvv": "123",
+    "bandeira": 2,
+    "titular": "Nome de Teste"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">
+{
+{
+     "dtvencimento": "9999-99-99"
+     "descricao": "Mensal",
+     "valor": 150,
+     "historico": [
+         {
+             "valor": 150,
+             "dtpagto": "9999-99-99"
+         }
+     ]
+}</code></pre>
+<div id="execution-results-POSTapi-aluno-pagamento" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-aluno-pagamento"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-aluno-pagamento"></code></pre>
+</div>
+<div id="execution-error-POSTapi-aluno-pagamento" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-aluno-pagamento"></code></pre>
+</div>
+<form id="form-POSTapi-aluno-pagamento" data-method="POST" data-path="api/aluno/pagamento" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-aluno-pagamento', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/aluno/pagamento</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-aluno-pagamento" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-aluno-pagamento" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>numero</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="numero" data-endpoint="POSTapi-aluno-pagamento" data-component="body" required  hidden>
+<br>
+Número do cartão.</p>
+<p>
+<b><code>mes</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="mes" data-endpoint="POSTapi-aluno-pagamento" data-component="body" required  hidden>
+<br>
+Mês de validade.</p>
+<p>
+<b><code>ano</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="ano" data-endpoint="POSTapi-aluno-pagamento" data-component="body" required  hidden>
+<br>
+Ano de validade.</p>
+<p>
+<b><code>cvv</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="cvv" data-endpoint="POSTapi-aluno-pagamento" data-component="body" required  hidden>
+<br>
+CVV do cartão.</p>
+<p>
+<b><code>bandeira</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bandeira" data-endpoint="POSTapi-aluno-pagamento" data-component="body" required  hidden>
+<br>
+Bandeira do cartão.</p>
+<p>
+<b><code>titular</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="titular" data-endpoint="POSTapi-aluno-pagamento" data-component="body" required  hidden>
+<br>
+Titular do cartão.</p>
+
+</form><h1>Aluno / Onboarding</h1>
+<p>APIs para gerenciar o onboarding das contas de alunos</p>
+<h2>Login</h2>
+<p>Realiza o login para utilizar o painel</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://api.modfiq.natus/api/aluno/login',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'email' =&gt; 'teste@teste.com',
+            'senha' =&gt; 'teste123',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X POST \
+    "http://api.modfiq.natus/api/aluno/login" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"email":"teste@teste.com","senha":"teste123"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/aluno/login"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "teste@teste.com",
+    "senha": "teste123"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Usuário e\/ou senha inválido!"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">
+{
+  "erro": false,
+  "data": {
+     "id": 1,
+     "nome": "Aluno de Teste",
+     "arquivo": 1,
+     "aula_hoje": 1,
+     "horario_aula": "19:00",
+     "dtvencimento": "9999-99-99",
+     "plano": {
+         "descricao": "Mensal",
+         "valor": 150,
+     }
+     "token": "..."
+  }
+}</code></pre>
+<div id="execution-results-POSTapi-aluno-login" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-aluno-login"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-aluno-login"></code></pre>
+</div>
+<div id="execution-error-POSTapi-aluno-login" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-aluno-login"></code></pre>
+</div>
+<form id="form-POSTapi-aluno-login" data-method="POST" data-path="api/aluno/login" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-aluno-login', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/aluno/login</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-aluno-login" data-component="body" required  hidden>
+<br>
+Email do aluno.</p>
+<p>
+<b><code>senha</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="senha" data-endpoint="POSTapi-aluno-login" data-component="body" required  hidden>
+<br>
+Senha do aluno.</p>
+
+</form>
+<h2>Cadastro</h2>
+<p>Realiza o cadastro do aluno para utilizar o painel</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://api.modfiq.natus/api/aluno/cadastro',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'nome' =&gt; 'Fulano de Tal',
+            'email' =&gt; 'teste@teste.com',
+            'cpf' =&gt; '999.999.999-99',
+            'senha' =&gt; 'teste123',
+            'whatsapp' =&gt; '(99) 99999-9999',
+            'endereco' =&gt; 'Rua de Teste',
+            'numero' =&gt; '102',
+            'complemento' =&gt; '',
+            'bairro' =&gt; 'Centro',
+            'cep' =&gt; '99.999-999',
+            'cidade' =&gt; 'São Paulo',
+            'uf' =&gt; 'SP',
+            'pais' =&gt; 'Brasil',
+            'plano' =&gt; 1,
+            'professor' =&gt; 'SP',
+            'dtnascimento' =&gt; '99/99/9999',
+            'anamnese' =&gt; [
+                'praticaatividade' =&gt; 1,
+                'qualatividade' =&gt; 'teste',
+                'tomamedicamento' =&gt; 1,
+                'qualmedicamento' =&gt; 'teste',
+                'fumante' =&gt; 1,
+                'fumaquantotempo' =&gt; 'teste',
+                'hipertensao' =&gt; 1,
+                'doenca' =&gt; 1,
+                'qualdoenca' =&gt; 'teste',
+                'apresentador' =&gt; 1,
+                'qualdor' =&gt; 'teste',
+                'qualmovimentosentedor' =&gt; 'teste',
+                'fezcirurgia' =&gt; 1,
+                'qualcirurgia' =&gt; 'teste',
+                'tempocirurgia' =&gt; 'teste',
+                'objetivo' =&gt; 'teste',
+            ],
+            'aula' =&gt; [
+                'dia' =&gt; '10',
+                'horario' =&gt; '10:00',
+                'mes' =&gt; '10',
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X POST \
+    "http://api.modfiq.natus/api/aluno/cadastro" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"nome":"Fulano de Tal","email":"teste@teste.com","cpf":"999.999.999-99","senha":"teste123","whatsapp":"(99) 99999-9999","endereco":"Rua de Teste","numero":"102","complemento":"","bairro":"Centro","cep":"99.999-999","cidade":"S\u00e3o Paulo","uf":"SP","pais":"Brasil","plano":1,"professor":"SP","dtnascimento":"99\/99\/9999","anamnese":{"praticaatividade":1,"qualatividade":"teste","tomamedicamento":1,"qualmedicamento":"teste","fumante":1,"fumaquantotempo":"teste","hipertensao":1,"doenca":1,"qualdoenca":"teste","apresentador":1,"qualdor":"teste","qualmovimentosentedor":"teste","fezcirurgia":1,"qualcirurgia":"teste","tempocirurgia":"teste","objetivo":"teste"},"aula":{"dia":"10","horario":"10:00","mes":"10"}}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/aluno/cadastro"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "nome": "Fulano de Tal",
+    "email": "teste@teste.com",
+    "cpf": "999.999.999-99",
+    "senha": "teste123",
+    "whatsapp": "(99) 99999-9999",
+    "endereco": "Rua de Teste",
+    "numero": "102",
+    "complemento": "",
+    "bairro": "Centro",
+    "cep": "99.999-999",
+    "cidade": "S\u00e3o Paulo",
+    "uf": "SP",
+    "pais": "Brasil",
+    "plano": 1,
+    "professor": "SP",
+    "dtnascimento": "99\/99\/9999",
+    "anamnese": {
+        "praticaatividade": 1,
+        "qualatividade": "teste",
+        "tomamedicamento": 1,
+        "qualmedicamento": "teste",
+        "fumante": 1,
+        "fumaquantotempo": "teste",
+        "hipertensao": 1,
+        "doenca": 1,
+        "qualdoenca": "teste",
+        "apresentador": 1,
+        "qualdor": "teste",
+        "qualmovimentosentedor": "teste",
+        "fezcirurgia": 1,
+        "qualcirurgia": "teste",
+        "tempocirurgia": "teste",
+        "objetivo": "teste"
+    },
+    "aula": {
+        "dia": "10",
+        "horario": "10:00",
+        "mes": "10"
+    }
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Não foi possível realizar o cadastro"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": false
+}</code></pre>
+<div id="execution-results-POSTapi-aluno-cadastro" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-aluno-cadastro"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-aluno-cadastro"></code></pre>
+</div>
+<div id="execution-error-POSTapi-aluno-cadastro" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-aluno-cadastro"></code></pre>
+</div>
+<form id="form-POSTapi-aluno-cadastro" data-method="POST" data-path="api/aluno/cadastro" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-aluno-cadastro', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/aluno/cadastro</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>nome</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="nome" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Nome do aluno.</p>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Email do aluno.</p>
+<p>
+<b><code>cpf</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="cpf" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+CPF do aluno.</p>
+<p>
+<b><code>senha</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="senha" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Senha do aluno.</p>
+<p>
+<b><code>whatsapp</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="whatsapp" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Whatsapp do aluno.</p>
+<p>
+<b><code>endereco</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="endereco" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Endereço do aluno.</p>
+<p>
+<b><code>numero</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="numero" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Número do endereço do aluno.</p>
+<p>
+<b><code>complemento</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="complemento" data-endpoint="POSTapi-aluno-cadastro" data-component="body"  hidden>
+<br>
+Complemento do endereço do aluno.</p>
+<p>
+<b><code>bairro</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="bairro" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Bairro do endereço do aluno.</p>
+<p>
+<b><code>cep</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="cep" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+CEP do endereço do aluno.</p>
+<p>
+<b><code>cidade</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="cidade" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Cidade do aluno.</p>
+<p>
+<b><code>uf</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="uf" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+UF do endereço do aluno.</p>
+<p>
+<b><code>pais</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="pais" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+País do endereço do aluno.</p>
+<p>
+<b><code>plano</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="plano" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+ID do plano do aluno.</p>
+<p>
+<b><code>professor</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="professor" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+ID do professor do aluno.</p>
+<p>
+<b><code>dtnascimento</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="dtnascimento" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Dt. Nascimento do aluno.</p>
+<p>
+<details>
+<summary>
+<b><code>anamnese</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+</summary>
+<br>
+<p>
+<b><code>anamnese.praticaatividade</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.praticaatividade" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Pratica Atividade.</p>
+<p>
+<b><code>anamnese.qualatividade</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.qualatividade" data-endpoint="POSTapi-aluno-cadastro" data-component="body"  hidden>
+<br>
+Quais Atividades.</p>
+<p>
+<b><code>anamnese.tomamedicamento</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.tomamedicamento" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Toma Medicamento.</p>
+<p>
+<b><code>anamnese.qualmedicamento</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.qualmedicamento" data-endpoint="POSTapi-aluno-cadastro" data-component="body"  hidden>
+<br>
+Quais Medicamentos.</p>
+<p>
+<b><code>anamnese.fumante</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.fumante" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Fumante.</p>
+<p>
+<b><code>anamnese.fumaquantotempo</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.fumaquantotempo" data-endpoint="POSTapi-aluno-cadastro" data-component="body"  hidden>
+<br>
+Fuma há quanto tempo.</p>
+<p>
+<b><code>anamnese.hipertensao</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.hipertensao" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Possui Hipertensão.</p>
+<p>
+<b><code>anamnese.doenca</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.doenca" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Possui doença.</p>
+<p>
+<b><code>anamnese.qualdoenca</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.qualdoenca" data-endpoint="POSTapi-aluno-cadastro" data-component="body"  hidden>
+<br>
+Qual doença.</p>
+<p>
+<b><code>anamnese.apresentador</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.apresentador" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Apresenta Dor.</p>
+<p>
+<b><code>anamnese.qualdor</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.qualdor" data-endpoint="POSTapi-aluno-cadastro" data-component="body"  hidden>
+<br>
+Quais dores.</p>
+<p>
+<b><code>anamnese.qualmovimentosentedor</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.qualmovimentosentedor" data-endpoint="POSTapi-aluno-cadastro" data-component="body"  hidden>
+<br>
+Qual movimento sente dor.</p>
+<p>
+<b><code>anamnese.fezcirurgia</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.fezcirurgia" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Fez cirurgia.</p>
+<p>
+<b><code>anamnese.qualcirurgia</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.qualcirurgia" data-endpoint="POSTapi-aluno-cadastro" data-component="body"  hidden>
+<br>
+Qual cirurgia.</p>
+<p>
+<b><code>anamnese.tempocirurgia</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="anamnese.tempocirurgia" data-endpoint="POSTapi-aluno-cadastro" data-component="body"  hidden>
+<br>
+Tempo da última cirurgia.</p>
+<p>
+<b><code>anamnese.objetivo</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="anamnese.objetivo" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Qual Objetivo.</p>
+</details>
+</p>
+<p>
+<details>
+<summary>
+<b><code>aula</code></b>&nbsp;&nbsp;<small>object</small>     <i>optional</i> &nbsp;
+<br>
+</summary>
+<br>
+<p>
+<b><code>aula.dia</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="aula.dia" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Dia aula experimental.</p>
+<p>
+<b><code>aula.horario</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="aula.horario" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Horário aula experimental.</p>
+<p>
+<b><code>aula.mes</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="aula.mes" data-endpoint="POSTapi-aluno-cadastro" data-component="body" required  hidden>
+<br>
+Mês aula experimental.</p>
+</details>
+</p>
+
+</form><h1>Aluno / Registro Evolutivo</h1>
+<p>APIs para gerenciar as mensalidades das contas de alunos</p>
+<h2>Listar Registro</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Retorna os dados do registro evolutivo do aluno</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/aluno/registroevolutivo',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/aluno/registroevolutivo" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/aluno/registroevolutivo"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "arquivo": 1,
+            "datahora": "9999-99-99 99:99:99",
+            "descricao": "..."
+        }
+    ],
+    "first_page_url": "http:\/\/domain\/aluno\/registroevolutivo?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/domain\/aluno\/registroevolutivo?page=1",
+    "next_page_url": null,
+    "path": "http:\/\/domain\/aluno\/registroevolutivoo",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}</code></pre>
+<div id="execution-results-GETapi-aluno-registroevolutivo" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-aluno-registroevolutivo"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-aluno-registroevolutivo"></code></pre>
+</div>
+<div id="execution-error-GETapi-aluno-registroevolutivo" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-aluno-registroevolutivo"></code></pre>
+</div>
+<form id="form-GETapi-aluno-registroevolutivo" data-method="GET" data-path="api/aluno/registroevolutivo" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-aluno-registroevolutivo', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/aluno/registroevolutivo</code></b>
+</p>
+<p>
+<label id="auth-GETapi-aluno-registroevolutivo" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-aluno-registroevolutivo" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>per_page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="per_page" data-endpoint="GETapi-aluno-registroevolutivo" data-component="url"  hidden>
+<br>
+Registros por página.</p>
+<p>
+<b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="page" data-endpoint="GETapi-aluno-registroevolutivo" data-component="url"  hidden>
+<br>
+Página atual.</p>
+</form>
+<h2>Enviar Registro</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Envia um novo registro evolutivo do aluno</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://api.modfiq.natus/api/aluno/registroevolutivo',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+        'multipart' =&gt; [
+            [
+                'name' =&gt; 'descricao',
+                'contents' =&gt; 'distinctio'
+            ],
+            [
+                'name' =&gt; 'arquivo',
+                'contents' =&gt; fopen('C:\Users\Natus Tecnologia\AppData\Local\Temp\php7EA8.tmp', 'r')
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X POST \
+    "http://api.modfiq.natus/api/aluno/registroevolutivo" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: multipart/form-data" \
+    -H "Accept: application/json" \
+    -F "descricao=distinctio" \
+    -F "arquivo=@C:\Users\Natus Tecnologia\AppData\Local\Temp\php7EA8.tmp" </code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/aluno/registroevolutivo"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('descricao', 'distinctio');
+body.append('arquivo', document.querySelector('input[name="arquivo"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Não foi possível realizar o upload do documento"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": false
+}</code></pre>
+<div id="execution-results-POSTapi-aluno-registroevolutivo" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-aluno-registroevolutivo"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-aluno-registroevolutivo"></code></pre>
+</div>
+<div id="execution-error-POSTapi-aluno-registroevolutivo" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-aluno-registroevolutivo"></code></pre>
+</div>
+<form id="form-POSTapi-aluno-registroevolutivo" data-method="POST" data-path="api/aluno/registroevolutivo" data-authed="1" data-hasfiles="1" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"multipart\/form-data","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-aluno-registroevolutivo', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/aluno/registroevolutivo</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-aluno-registroevolutivo" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-aluno-registroevolutivo" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>arquivo</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+<input type="file" name="arquivo" data-endpoint="POSTapi-aluno-registroevolutivo" data-component="body" required  hidden>
+<br>
+Arquivo do upload</p>
+<p>
+<b><code>descricao</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="descricao" data-endpoint="POSTapi-aluno-registroevolutivo" data-component="body"  hidden>
+<br>
+Descrição do registro</p>
+
+</form><h1>Geral / Arquivo</h1>
+<p>APIs para baixar arquivo</p>
+<h2>Baixar arquivo</h2>
+<p>Método para baixar arquivo</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/arquivo/est/baixar',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/arquivo/est/baixar" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/arquivo/est/baixar"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Arquivo não encontrado"
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Arquivo não encontrado"
+}</code></pre>
+<div id="execution-results-GETapi-geral-arquivo--arq_id--baixar" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-arquivo--arq_id--baixar"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-arquivo--arq_id--baixar"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-arquivo--arq_id--baixar" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-arquivo--arq_id--baixar"></code></pre>
+</div>
+<form id="form-GETapi-geral-arquivo--arq_id--baixar" data-method="GET" data-path="api/geral/arquivo/{arq_id}/baixar" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-arquivo--arq_id--baixar', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/arquivo/{arq_id}/baixar</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>arq_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="arq_id" data-endpoint="GETapi-geral-arquivo--arq_id--baixar" data-component="url" required  hidden>
+<br>
+ID do arquivo</p>
+</form>
+<h2>Ver arquivo</h2>
+<p>Método para baixar arquivo</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/arquivo/non/ver',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/arquivo/non/ver" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/arquivo/non/ver"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Arquivo não encontrado"
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Arquivo não encontrado"
+}</code></pre>
+<div id="execution-results-GETapi-geral-arquivo--arq_id--ver" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-arquivo--arq_id--ver"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-arquivo--arq_id--ver"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-arquivo--arq_id--ver" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-arquivo--arq_id--ver"></code></pre>
+</div>
+<form id="form-GETapi-geral-arquivo--arq_id--ver" data-method="GET" data-path="api/geral/arquivo/{arq_id}/ver" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-arquivo--arq_id--ver', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/arquivo/{arq_id}/ver</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>arq_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="arq_id" data-endpoint="GETapi-geral-arquivo--arq_id--ver" data-component="url" required  hidden>
+<br>
+ID do arquivo</p>
+</form>
+<h2>Dados do arquivo</h2>
+<p>Método para ver dados do arquivo</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/arquivo/et/dados',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/arquivo/et/dados" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/arquivo/et/dados"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "arq_id": 1,
+    "arq_data": "2020-06-09",
+    "arq_pasta": "teste",
+    "arq_extensao": "png",
+    "arq_nome": "logo.png",
+    "filepath": "\/path\/to\/storage\/5.png"
+}</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Arquivo não encontrado"
+}</code></pre>
+<div id="execution-results-GETapi-geral-arquivo--arq_id--dados" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-arquivo--arq_id--dados"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-arquivo--arq_id--dados"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-arquivo--arq_id--dados" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-arquivo--arq_id--dados"></code></pre>
+</div>
+<form id="form-GETapi-geral-arquivo--arq_id--dados" data-method="GET" data-path="api/geral/arquivo/{arq_id}/dados" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-arquivo--arq_id--dados', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/arquivo/{arq_id}/dados</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>arq_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="arq_id" data-endpoint="GETapi-geral-arquivo--arq_id--dados" data-component="url" required  hidden>
+<br>
+ID do arquivo</p>
+</form><h1>Geral / Aula</h1>
+<p>APIs para gerenciar as aulas</p>
+<h2>Salvar Aula</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Grava o horário de entrada e saída</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://api.modfiq.natus/api/geral/aula',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'tipo' =&gt; 3,
+            'tipo_aula' =&gt; 4,
+            'id' =&gt; 16,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X POST \
+    "http://api.modfiq.natus/api/geral/aula" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"tipo":3,"tipo_aula":4,"id":16}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/aula"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "tipo": 3,
+    "tipo_aula": 4,
+    "id": 16
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Não foi possível salvar o horário"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": false,
+    "data": {
+        "url": "..."
+    }
+}</code></pre>
+<div id="execution-results-POSTapi-geral-aula" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-geral-aula"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-geral-aula"></code></pre>
+</div>
+<div id="execution-error-POSTapi-geral-aula" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-geral-aula"></code></pre>
+</div>
+<form id="form-POSTapi-geral-aula" data-method="POST" data-path="api/geral/aula" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-geral-aula', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/geral/aula</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-geral-aula" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-geral-aula" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>tipo</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="tipo" data-endpoint="POSTapi-geral-aula" data-component="body" required  hidden>
+<br>
+Tipo de registro (1-Entrada, 2-Saída)</p>
+<p>
+<b><code>tipo_aula</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="tipo_aula" data-endpoint="POSTapi-geral-aula" data-component="body" required  hidden>
+<br>
+Tipo de registro (1-Professor, 2-Aluno)</p>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="POSTapi-geral-aula" data-component="body" required  hidden>
+<br>
+ID do aluno ou professor</p>
+
+</form><h1>Geral / Banner</h1>
+<p>APIs para gerenciar os dados de banners</p>
+<h2>Listar Banners</h2>
+<p>Método para listar os banners</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/banner',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/banner" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/banner"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "titulo": "Banner 01",
+            "descricao": "...",
+            "link": "...",
+            "arquivo": 1
+        }
+    ],
+    "first_page_url": "http:\/\/domain\/api\/geral\/banner?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/domain\/api\/geral\/banner?page=1",
+    "next_page_url": null,
+    "path": "http:\/\/domain\/api\/geral\/banner",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}</code></pre>
+<div id="execution-results-GETapi-geral-banner" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-banner"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-banner"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-banner" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-banner"></code></pre>
+</div>
+<form id="form-GETapi-geral-banner" data-method="GET" data-path="api/geral/banner" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-banner', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/banner</code></b>
+</p>
+</form><h1>Geral / Blog</h1>
+<p>APIs para gerenciar os dados de blog</p>
+<h2>Listar Notícias</h2>
+<p>Método para listar as notícias</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/blog',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'perPage'=&gt; '18',
+            'page'=&gt; '12',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/blog?perPage=18&amp;page=12" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/blog"
+);
+
+let params = {
+    "perPage": "18",
+    "page": "12",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "titulo": "Quem Somos",
+            "resumo": "...",
+            "data": "9999-99-99",
+            "arquivo": 1,
+            "parceiro": {
+                "id": 1,
+                "nome": "Testes",
+                "arquivo": 1
+            }
+        }
+    ],
+    "first_page_url": "http:\/\/domain\/api\/geral\/blog?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/domain\/api\/geral\/blog?page=1",
+    "next_page_url": null,
+    "path": "http:\/\/domain\/api\/geral\/blog",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}</code></pre>
+<div id="execution-results-GETapi-geral-blog" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-blog"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-blog"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-blog" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-blog"></code></pre>
+</div>
+<form id="form-GETapi-geral-blog" data-method="GET" data-path="api/geral/blog" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-blog', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/blog</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>perPage</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="perPage" data-endpoint="GETapi-geral-blog" data-component="query"  hidden>
+<br>
+Registros por página</p>
+<p>
+<b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="page" data-endpoint="GETapi-geral-blog" data-component="query"  hidden>
+<br>
+Página</p>
+</form>
+<h2>Consultar Notícia</h2>
+<p>Método para consultar os dados de um registro de notícia</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/blog/quis',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/blog/quis" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/blog/quis"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Os dados da notícia não foram encontrados"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": false,
+    "data": {
+        "id": 1,
+        "titulo": "Quem Somos",
+        "resumo": "...",
+        "texto": "...",
+        "datahora": "9999-99-99 99:99:99",
+        "arquivo": 1,
+        "parceiro": {
+            "id": 1,
+            "nome": "Testes",
+            "url": "...",
+            "arquivo": 1
+        }
+    }
+}</code></pre>
+<div id="execution-results-GETapi-geral-blog--blog-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-blog--blog-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-blog--blog-"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-blog--blog-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-blog--blog-"></code></pre>
+</div>
+<form id="form-GETapi-geral-blog--blog-" data-method="GET" data-path="api/geral/blog/{blog}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-blog--blog-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/blog/{blog}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>blog</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="blog" data-endpoint="GETapi-geral-blog--blog-" data-component="url" required  hidden>
+<br>
+</p>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="id" data-endpoint="GETapi-geral-blog--blog-" data-component="url" required  hidden>
+<br>
+ID da notícia</p>
+</form><h1>Geral / Consultas</h1>
+<p>APIs para gerenciar as consultas aos bureaus.</p>
+<h2>Consulta os dados de um CEP</h2>
+<p>Método para consultar os dados de um CEP</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://api.modfiq.natus/api/geral/consultacep',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'cep' =&gt; '18.682-050',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X POST \
+    "http://api.modfiq.natus/api/geral/consultacep" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"cep":"18.682-050"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/consultacep"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "cep": "18.682-050"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "CEP não encontrado"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": false,
+    "data": {
+        "cep": "01001-000",
+        "logradouro": "Praça da Sé",
+        "complemento": "lado ímpar",
+        "bairro": "Sé",
+        "localidade": "São Paulo",
+        "uf": "SP",
+        "unidade": "",
+        "ibge": "3550308",
+        "gia": "1004"
+    }
+}</code></pre>
+<div id="execution-results-POSTapi-geral-consultacep" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-geral-consultacep"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-geral-consultacep"></code></pre>
+</div>
+<div id="execution-error-POSTapi-geral-consultacep" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-geral-consultacep"></code></pre>
+</div>
+<form id="form-POSTapi-geral-consultacep" data-method="POST" data-path="api/geral/consultacep" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-geral-consultacep', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/geral/consultacep</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>cep</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="cep" data-endpoint="POSTapi-geral-consultacep" data-component="body" required  hidden>
+<br>
+CEP para a consulta.</p>
+
+</form><h1>Geral / Contato</h1>
+<p>APIs para gerenciar os contatos realizados com o Exoss Card</p>
+<h2>Fale Conosco</h2>
+<p>Método para enviar um email de contato</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://api.modfiq.natus/api/geral/faleconosco',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'nome' =&gt; 'Fulano de Tal',
+            'celular' =&gt; '(99) 99999-9999',
+            'email' =&gt; 'fulanodetal@outlook.com',
+            'assunto' =&gt; 'Dúvidas',
+            'mensagem' =&gt; 'Gostaria de saber como baixar o app.',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X POST \
+    "http://api.modfiq.natus/api/geral/faleconosco" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"nome":"Fulano de Tal","celular":"(99) 99999-9999","email":"fulanodetal@outlook.com","assunto":"D\u00favidas","mensagem":"Gostaria de saber como baixar o app."}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/faleconosco"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "nome": "Fulano de Tal",
+    "celular": "(99) 99999-9999",
+    "email": "fulanodetal@outlook.com",
+    "assunto": "D\u00favidas",
+    "mensagem": "Gostaria de saber como baixar o app."
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Não foi possível enviar o email"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": false
+}</code></pre>
+<div id="execution-results-POSTapi-geral-faleconosco" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-geral-faleconosco"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-geral-faleconosco"></code></pre>
+</div>
+<div id="execution-error-POSTapi-geral-faleconosco" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-geral-faleconosco"></code></pre>
+</div>
+<form id="form-POSTapi-geral-faleconosco" data-method="POST" data-path="api/geral/faleconosco" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-geral-faleconosco', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/geral/faleconosco</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>nome</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="nome" data-endpoint="POSTapi-geral-faleconosco" data-component="body" required  hidden>
+<br>
+Nome do contato.</p>
+<p>
+<b><code>celular</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="celular" data-endpoint="POSTapi-geral-faleconosco" data-component="body" required  hidden>
+<br>
+Celular do contato.</p>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-geral-faleconosco" data-component="body" required  hidden>
+<br>
+Email do contato.</p>
+<p>
+<b><code>assunto</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="assunto" data-endpoint="POSTapi-geral-faleconosco" data-component="body" required  hidden>
+<br>
+Assunto do contato.</p>
+<p>
+<b><code>mensagem</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="mensagem" data-endpoint="POSTapi-geral-faleconosco" data-component="body" required  hidden>
+<br>
+Mensagem do contato.</p>
+
+</form><h1>Geral / Institucional</h1>
+<p>APIs para gerenciar os dados institucionais</p>
+<h2>Listar Institucional</h2>
+<p>Método para listar os dados institucionais da categoria</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/institucional/listar/excepturi',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/institucional/listar/excepturi" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/institucional/listar/excepturi"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": true
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": false,
+    "data": [
+        {
+            "id": 1,
+            "titulo": "Termos de uso",
+            "texto": "..."
+        }
+    ]
+}</code></pre>
+<div id="execution-results-GETapi-geral-institucional-listar--categoria-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-institucional-listar--categoria-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-institucional-listar--categoria-"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-institucional-listar--categoria-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-institucional-listar--categoria-"></code></pre>
+</div>
+<form id="form-GETapi-geral-institucional-listar--categoria-" data-method="GET" data-path="api/geral/institucional/listar/{categoria}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-institucional-listar--categoria-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/institucional/listar/{categoria}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>categoria</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="categoria" data-endpoint="GETapi-geral-institucional-listar--categoria-" data-component="url" required  hidden>
+<br>
+ID da categoria institucional</p>
+</form>
+<h2>Consultar Institucional</h2>
+<p>Método para consultar os dados de um registro institucional</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/institucional/detalhes/qui',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/institucional/detalhes/qui" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/institucional/detalhes/qui"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Os dados institucionais não foram encontrados"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": false,
+    "data": {
+        "id": 1,
+        "titulo": "Termos de uso",
+        "texto": "..."
+    }
+}</code></pre>
+<div id="execution-results-GETapi-geral-institucional-detalhes--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-institucional-detalhes--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-institucional-detalhes--id-"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-institucional-detalhes--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-institucional-detalhes--id-"></code></pre>
+</div>
+<form id="form-GETapi-geral-institucional-detalhes--id-" data-method="GET" data-path="api/geral/institucional/detalhes/{id}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-institucional-detalhes--id-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/institucional/detalhes/{id}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="id" data-endpoint="GETapi-geral-institucional-detalhes--id-" data-component="url" required  hidden>
+<br>
+ID do institucional</p>
+</form>
+<h2>Listar Categorias</h2>
+<p>Método para listar as categorias de institucional</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/institucional/categorias',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/institucional/categorias" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/institucional/categorias"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": true
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": false,
+    "data": [
+        {
+            "id": 1,
+            "titulo": "Quem Somos",
+            "resumo": "...",
+            "arquivo": 1
+        }
+    ]
+}</code></pre>
+<div id="execution-results-GETapi-geral-institucional-categorias" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-institucional-categorias"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-institucional-categorias"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-institucional-categorias" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-institucional-categorias"></code></pre>
+</div>
+<form id="form-GETapi-geral-institucional-categorias" data-method="GET" data-path="api/geral/institucional/categorias" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-institucional-categorias', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/institucional/categorias</code></b>
+</p>
+</form>
+<h2>Consultar Categoria</h2>
+<p>Método para mostar os detalhes de uma categoria institucional</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/institucional/categorias/et',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/institucional/categorias/et" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/institucional/categorias/et"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": true
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": false,
+    "data": {
+        "id": 1,
+        "titulo": "Quem Somos",
+        "resumo": "...",
+        "arquivo": 1
+    }
+}</code></pre>
+<div id="execution-results-GETapi-geral-institucional-categorias--id-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-institucional-categorias--id-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-institucional-categorias--id-"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-institucional-categorias--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-institucional-categorias--id-"></code></pre>
+</div>
+<form id="form-GETapi-geral-institucional-categorias--id-" data-method="GET" data-path="api/geral/institucional/categorias/{id}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-institucional-categorias--id-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/institucional/categorias/{id}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="id" data-endpoint="GETapi-geral-institucional-categorias--id-" data-component="url" required  hidden>
+<br>
+ID da categoria institucional</p>
+</form><h1>Geral / Parceiros</h1>
+<p>APIs para gerenciar os dados de parceiros</p>
+<h2>Listar Parceiros</h2>
+<p>Método para listar os parceiros</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/parceiros',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'perPage'=&gt; '15',
+            'page'=&gt; '6',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/parceiros?perPage=15&amp;page=6" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/parceiros"
+);
+
+let params = {
+    "perPage": "15",
+    "page": "6",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "nome": "Quem Somos",
+            "descricao": "...",
+            "link": "...",
+            "arquivo": 1
+        }
+    ],
+    "first_page_url": "http:\/\/domain\/api\/geral\/parceiros?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/domain\/api\/geral\/parceiros?page=1",
+    "next_page_url": null,
+    "path": "http:\/\/domain\/api\/geral\/parceiros",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}</code></pre>
+<div id="execution-results-GETapi-geral-parceiros" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-parceiros"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-parceiros"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-parceiros" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-parceiros"></code></pre>
+</div>
+<form id="form-GETapi-geral-parceiros" data-method="GET" data-path="api/geral/parceiros" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-parceiros', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/parceiros</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>perPage</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="perPage" data-endpoint="GETapi-geral-parceiros" data-component="query"  hidden>
+<br>
+Registros por página</p>
+<p>
+<b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="page" data-endpoint="GETapi-geral-parceiros" data-component="query"  hidden>
+<br>
+Página</p>
+</form><h1>Geral / Planos</h1>
+<p>APIs para gerenciar os dados de planos</p>
+<h2>Listar Planos</h2>
+<p>Método para listar os planos</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/plano',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'perPage'=&gt; '19',
+            'page'=&gt; '7',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/plano?perPage=19&amp;page=7" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/plano"
+);
+
+let params = {
+    "perPage": "19",
+    "page": "7",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "titulo": "Quem Somos",
+            "resumo": "...",
+            "descricao": "...",
+            "valor": 250,
+            "arquivo": 1
+        }
+    ],
+    "first_page_url": "http:\/\/domain\/api\/geral\/plano?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/domain\/api\/geral\/plano?page=1",
+    "next_page_url": null,
+    "path": "http:\/\/domain\/api\/geral\/plano",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}</code></pre>
+<div id="execution-results-GETapi-geral-plano" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-plano"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-plano"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-plano" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-plano"></code></pre>
+</div>
+<form id="form-GETapi-geral-plano" data-method="GET" data-path="api/geral/plano" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-plano', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/plano</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p>
+<b><code>perPage</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="perPage" data-endpoint="GETapi-geral-plano" data-component="query"  hidden>
+<br>
+Registros por página</p>
+<p>
+<b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="page" data-endpoint="GETapi-geral-plano" data-component="query"  hidden>
+<br>
+Página</p>
+</form>
+<h2>Consultar Plano</h2>
+<p>Método para consultar os dados de um registro de plano</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/plano/sapiente',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/plano/sapiente" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/plano/sapiente"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Os dados do plano não foram encontrados"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": false,
+    "data": {
+        "id": 1,
+        "titulo": "Biolivre",
+        "valor": 250,
+        "resumo": "...",
+        "descricao": "...",
+        "arquivo": 1
+    }
+}</code></pre>
+<div id="execution-results-GETapi-geral-plano--plano-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-plano--plano-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-plano--plano-"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-plano--plano-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-plano--plano-"></code></pre>
+</div>
+<form id="form-GETapi-geral-plano--plano-" data-method="GET" data-path="api/geral/plano/{plano}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-plano--plano-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/plano/{plano}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>plano</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="plano" data-endpoint="GETapi-geral-plano--plano-" data-component="url" required  hidden>
+<br>
+</p>
+<p>
+<b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="id" data-endpoint="GETapi-geral-plano--plano-" data-component="url" required  hidden>
+<br>
+ID do plano</p>
+</form><h1>Geral / Professor</h1>
+<p>APIs para gerenciar os dados de professores</p>
+<h2>Listar Professores</h2>
+<p>Retorna os professores ativos na plataforma</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/professor',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/professor" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/professor"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": true
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": false,
+    "data": [
+        {
+            "id": 1,
+            "arquivo": 1,
+            "nome": "Fulano de Tal",
+            "descricao": "..."
+        }
+    ]
+}</code></pre>
+<div id="execution-results-GETapi-geral-professor" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-professor"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-professor"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-professor" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-professor"></code></pre>
+</div>
+<form id="form-GETapi-geral-professor" data-method="GET" data-path="api/geral/professor" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-professor', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/professor</code></b>
+</p>
+</form>
+<h2>Listar Horários</h2>
+<p>Retorna os horários de um professor</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/geral/professor/horarios/eligendi',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/geral/professor/horarios/eligendi" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/geral/professor/horarios/eligendi"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": true
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">
+{
+  "vazio": false,
+  "data": [
+     "1": ["19:00:00", "20:00:00"]
+  ]
+}</code></pre>
+<div id="execution-results-GETapi-geral-professor-horarios--professor-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-geral-professor-horarios--professor-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-geral-professor-horarios--professor-"></code></pre>
+</div>
+<div id="execution-error-GETapi-geral-professor-horarios--professor-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-geral-professor-horarios--professor-"></code></pre>
+</div>
+<form id="form-GETapi-geral-professor-horarios--professor-" data-method="GET" data-path="api/geral/professor/horarios/{professor}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-geral-professor-horarios--professor-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/geral/professor/horarios/{professor}</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>professor</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="professor" data-endpoint="GETapi-geral-professor-horarios--professor-" data-component="url" required  hidden>
+<br>
+</p>
+</form><h1>Professor / Aluno</h1>
+<p>APIs para gerenciar os alunos de professores</p>
+<h2>Listar Alunos</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Retorna os dados dos alunos do professor</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/professor/aluno',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/professor/aluno" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/professor/aluno"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "nome": "Aluno de teste",
+            "whatsapp": "(99) 99999-9999"
+        }
+    ],
+    "first_page_url": "http:\/\/domain\/professor\/aluno?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/domain\/aprofessor\/aluno?page=1",
+    "next_page_url": null,
+    "path": "http:\/\/domain\/professor\/aluno",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}</code></pre>
+<div id="execution-results-GETapi-professor-aluno" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-professor-aluno"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-professor-aluno"></code></pre>
+</div>
+<div id="execution-error-GETapi-professor-aluno" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-professor-aluno"></code></pre>
+</div>
+<form id="form-GETapi-professor-aluno" data-method="GET" data-path="api/professor/aluno" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-professor-aluno', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/professor/aluno</code></b>
+</p>
+<p>
+<label id="auth-GETapi-professor-aluno" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-professor-aluno" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>per_page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="per_page" data-endpoint="GETapi-professor-aluno" data-component="url"  hidden>
+<br>
+Registros por página.</p>
+<p>
+<b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="page" data-endpoint="GETapi-professor-aluno" data-component="url"  hidden>
+<br>
+Página atual.</p>
+</form>
+<h2>Exibir Aluno</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Retorna os dados do perfil do aluno</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://api.modfiq.natus/api/professor/aluno/rerum',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://api.modfiq.natus/api/professor/aluno/rerum" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/professor/aluno/rerum"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": true
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "vazio": false,
+    "data": {
+        "id": 1,
+        "nome": "Aluno de Teste",
+        "dtnascimento": "9999-99-99",
+        "whatsapp": "(99) 99999-9999",
+        "endereco": "Rua de Teste",
+        "numero": "10",
+        "complemento": "",
+        "bairro": "Bairro Teste",
+        "cep": "99.999-999",
+        "email": "teste@teste.com",
+        "anamnese": {
+            "possui_hipertensao": 1,
+            "pratica_atividade": 1,
+            "quais_atividades": "Teste",
+            "toma_medicamento": 1,
+            "quais_medicamentos": "Teste",
+            "fumante": 1,
+            "fumante_tempo": "Teste",
+            "possui_doenca": 1,
+            "quais_doencas": "Teste",
+            "apresenta_dor": 1,
+            "quais_dores": "teste",
+            "movimento_dores": "Teste",
+            "realizou_cirurgia": 1,
+            "quais_cirurgias": "Teste",
+            "tempo_ultima_cirurgia": "Teste",
+            "objetivo": "Teste"
+        }
+    }
+}</code></pre>
+<div id="execution-results-GETapi-professor-aluno--aluno-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-professor-aluno--aluno-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-professor-aluno--aluno-"></code></pre>
+</div>
+<div id="execution-error-GETapi-professor-aluno--aluno-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-professor-aluno--aluno-"></code></pre>
+</div>
+<form id="form-GETapi-professor-aluno--aluno-" data-method="GET" data-path="api/professor/aluno/{aluno}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-professor-aluno--aluno-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/professor/aluno/{aluno}</code></b>
+</p>
+<p>
+<label id="auth-GETapi-professor-aluno--aluno-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-professor-aluno--aluno-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>aluno</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="aluno" data-endpoint="GETapi-professor-aluno--aluno-" data-component="url" required  hidden>
+<br>
+</p>
+</form><h1>Professor / Onboarding</h1>
+<p>APIs para gerenciar as contas de professores</p>
+<h2>Login</h2>
+<p>Realiza o login para utilizar o painel</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://api.modfiq.natus/api/professor/login',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'email' =&gt; 'teste@teste.com',
+            'senha' =&gt; 'teste123',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-bash">curl -X POST \
+    "http://api.modfiq.natus/api/professor/login" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"email":"teste@teste.com","senha":"teste123"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://api.modfiq.natus/api/professor/login"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "teste@teste.com",
+    "senha": "teste123"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (400):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": true,
+    "mensagem": "Usuário e\/ou senha inválido!"
+}</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "erro": false,
+    "data": {
+        "id": 1,
+        "nome": "Professor de teste",
+        "arquivo": 1,
+        "token": "..."
+    }
+}</code></pre>
+<div id="execution-results-POSTapi-professor-login" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-professor-login"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-professor-login"></code></pre>
+</div>
+<div id="execution-error-POSTapi-professor-login" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-professor-login"></code></pre>
+</div>
+<form id="form-POSTapi-professor-login" data-method="POST" data-path="api/professor/login" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-professor-login', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/professor/login</code></b>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-professor-login" data-component="body" required  hidden>
+<br>
+Email do professor.</p>
+<p>
+<b><code>senha</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="senha" data-endpoint="POSTapi-professor-login" data-component="body" required  hidden>
+<br>
+Senha do professor.</p>
+
+</form>
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                    <a href="#" data-language-name="php">php</a>
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+            </div>
+</div>
+<script>
+    $(function () {
+        var languages = ["php","bash","javascript"];
+        setupLanguages(languages);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,1190 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "api.modfiq.natus"
+        }
+    ],
+    "info": {
+        "name": "ModifiQ - API",
+        "_postman_id": "a174ef8f-6ee1-4f6c-b8df-9c0d439e3310",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Aluno \/ Aula",
+            "description": "\nAPIs para gerenciar as aulas de alunos",
+            "item": [
+                {
+                    "name": "Listar Hor\u00e1rios",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/aluno\/horarios",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/aluno\/horarios"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os hor\u00e1rios de aula  do aluno"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Salvar Aula",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/aluno\/aula",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/aluno\/aula"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tipo\": 4\n}"
+                        },
+                        "description": "Grava o hor\u00e1rio de entrada e sa\u00edda"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Aluno \/ Dados",
+            "description": "\nAPIs para gerenciar os dados das contas de alunos",
+            "item": [
+                {
+                    "name": "Exibir Perfil",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/aluno\/perfil",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/aluno\/perfil"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os dados do perfil do aluno"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Atualizar Perfil",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/aluno\/perfil",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/aluno\/perfil"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nome\": \"Fulano de Tal\",\n    \"dtnascimento\": \"99\\\/99\\\/9999\",\n    \"whatsapp\": \"(99) 99999-9999\",\n    \"endereco\": \"Rua de Teste\",\n    \"numero\": \"12345\",\n    \"complemento\": \"\",\n    \"bairro\": \"Bairro Teste\",\n    \"cep\": \"99.999-99\",\n    \"email\": \"teste@teste.com\",\n    \"senha\": \"teste123\",\n    \"anamnese\": {\n        \"possui_hipertensao\": 1,\n        \"pratica_atividade\": 1,\n        \"quais_atividades\": \"Basquete, Futebol\",\n        \"toma_medicamento\": 0,\n        \"quais_medicamentos\": \"\",\n        \"fumante\": 1,\n        \"fumante_tempo\": \"1 ano\",\n        \"possui_doenca\": 1,\n        \"quais_doencas\": \"Diabetes\",\n        \"apresenta_dor\": 0,\n        \"quais_dores\": \"\",\n        \"movimento_dor\": \"\",\n        \"realizou_cirurgia\": 1,\n        \"quais_cirurgias\": \"Clavicula\",\n        \"tempo_ultima_cirurgia\": \"1 ano\",\n        \"objetivo\": \"Hipertrofia\"\n    }\n}"
+                        },
+                        "description": "Atualiza os dados do perfil do aluno"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Aluno \/ Mensalidade",
+            "description": "\nAPIs para gerenciar as mensalidades das contas de alunos",
+            "item": [
+                {
+                    "name": "Mensalidade",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/aluno\/mensalidade",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/aluno\/mensalidade"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os dados da mensalidade do aluno"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Pagamento",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/aluno\/pagamento",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/aluno\/pagamento"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"numero\": \"9999 9999 9999 9999\",\n    \"mes\": \"01\",\n    \"ano\": \"2026\",\n    \"cvv\": \"123\",\n    \"bandeira\": 2,\n    \"titular\": \"Nome de Teste\"\n}"
+                        },
+                        "description": "Realiza o pagamento da mensalidade"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Aluno \/ Onboarding",
+            "description": "\nAPIs para gerenciar o onboarding das contas de alunos",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/aluno\/login",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/aluno\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"teste@teste.com\",\n    \"senha\": \"teste123\"\n}"
+                        },
+                        "description": "Realiza o login para utilizar o painel",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Cadastro",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/aluno\/cadastro",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/aluno\/cadastro"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nome\": \"Fulano de Tal\",\n    \"email\": \"teste@teste.com\",\n    \"cpf\": \"999.999.999-99\",\n    \"senha\": \"teste123\",\n    \"whatsapp\": \"(99) 99999-9999\",\n    \"endereco\": \"Rua de Teste\",\n    \"numero\": \"102\",\n    \"complemento\": \"\",\n    \"bairro\": \"Centro\",\n    \"cep\": \"99.999-999\",\n    \"cidade\": \"S\\u00e3o Paulo\",\n    \"uf\": \"SP\",\n    \"pais\": \"Brasil\",\n    \"plano\": 1,\n    \"professor\": \"SP\",\n    \"dtnascimento\": \"99\\\/99\\\/9999\",\n    \"anamnese\": {\n        \"praticaatividade\": 1,\n        \"qualatividade\": \"teste\",\n        \"tomamedicamento\": 1,\n        \"qualmedicamento\": \"teste\",\n        \"fumante\": 1,\n        \"fumaquantotempo\": \"teste\",\n        \"hipertensao\": 1,\n        \"doenca\": 1,\n        \"qualdoenca\": \"teste\",\n        \"apresentador\": 1,\n        \"qualdor\": \"teste\",\n        \"qualmovimentosentedor\": \"teste\",\n        \"fezcirurgia\": 1,\n        \"qualcirurgia\": \"teste\",\n        \"tempocirurgia\": \"teste\",\n        \"objetivo\": \"teste\"\n    },\n    \"aula\": {\n        \"dia\": \"10\",\n        \"horario\": \"10:00\",\n        \"mes\": \"10\"\n    }\n}"
+                        },
+                        "description": "Realiza o cadastro do aluno para utilizar o painel",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Aluno \/ Registro Evolutivo",
+            "description": "\nAPIs para gerenciar as mensalidades das contas de alunos",
+            "item": [
+                {
+                    "name": "Listar Registro",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/aluno\/registroevolutivo",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/aluno\/registroevolutivo",
+                            "variable": [
+                                {
+                                    "id": "per_page",
+                                    "key": "per_page",
+                                    "value": "14",
+                                    "description": "Registros por p\u00e1gina."
+                                },
+                                {
+                                    "id": "page",
+                                    "key": "page",
+                                    "value": "7",
+                                    "description": "P\u00e1gina atual."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os dados do registro evolutivo do aluno"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Enviar Registro",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/aluno\/registroevolutivo",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/aluno\/registroevolutivo"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "descricao",
+                                    "value": "distinctio",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "arquivo",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": "Envia um novo registro evolutivo do aluno"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Geral \/ Arquivo",
+            "description": "\nAPIs para baixar arquivo",
+            "item": [
+                {
+                    "name": "Baixar arquivo",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/arquivo\/:arq_id\/baixar",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/arquivo\/:arq_id\/baixar",
+                            "variable": [
+                                {
+                                    "id": "arq_id",
+                                    "key": "arq_id",
+                                    "value": "est",
+                                    "description": "ID do arquivo"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para baixar arquivo",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Ver arquivo",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/arquivo\/:arq_id\/ver",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/arquivo\/:arq_id\/ver",
+                            "variable": [
+                                {
+                                    "id": "arq_id",
+                                    "key": "arq_id",
+                                    "value": "non",
+                                    "description": "ID do arquivo"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para baixar arquivo",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Dados do arquivo",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/arquivo\/:arq_id\/dados",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/arquivo\/:arq_id\/dados",
+                            "variable": [
+                                {
+                                    "id": "arq_id",
+                                    "key": "arq_id",
+                                    "value": "et",
+                                    "description": "ID do arquivo"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para ver dados do arquivo",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Geral \/ Aula",
+            "description": "\nAPIs para gerenciar as aulas",
+            "item": [
+                {
+                    "name": "Salvar Aula",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/aula",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/aula"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"tipo\": 3,\n    \"tipo_aula\": 4,\n    \"id\": 16\n}"
+                        },
+                        "description": "Grava o hor\u00e1rio de entrada e sa\u00edda"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Geral \/ Banner",
+            "description": "\nAPIs para gerenciar os dados de banners",
+            "item": [
+                {
+                    "name": "Listar Banners",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/banner",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/banner"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para listar os banners",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Geral \/ Blog",
+            "description": "\nAPIs para gerenciar os dados de blog",
+            "item": [
+                {
+                    "name": "Listar Not\u00edcias",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/blog",
+                            "query": [
+                                {
+                                    "key": "perPage",
+                                    "value": "18",
+                                    "description": "Registros por p\u00e1gina",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "12",
+                                    "description": "P\u00e1gina",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/blog?perPage=18&page=12"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para listar as not\u00edcias",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Consultar Not\u00edcia",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/blog\/:blog",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/blog\/:blog",
+                            "variable": [
+                                {
+                                    "id": "blog",
+                                    "key": "blog",
+                                    "value": "quis",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "rerum",
+                                    "description": "ID da not\u00edcia"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para consultar os dados de um registro de not\u00edcia",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Geral \/ Consultas",
+            "description": "\nAPIs para gerenciar as consultas aos bureaus.",
+            "item": [
+                {
+                    "name": "Consulta os dados de um CEP",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/consultacep",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/consultacep"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"cep\": \"18.682-050\"\n}"
+                        },
+                        "description": "M\u00e9todo para consultar os dados de um CEP",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Geral \/ Contato",
+            "description": "\nAPIs para gerenciar os contatos realizados com o Exoss Card",
+            "item": [
+                {
+                    "name": "Fale Conosco",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/faleconosco",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/faleconosco"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"nome\": \"Fulano de Tal\",\n    \"celular\": \"(99) 99999-9999\",\n    \"email\": \"fulanodetal@outlook.com\",\n    \"assunto\": \"D\\u00favidas\",\n    \"mensagem\": \"Gostaria de saber como baixar o app.\"\n}"
+                        },
+                        "description": "M\u00e9todo para enviar um email de contato",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Geral \/ Institucional",
+            "description": "\nAPIs para gerenciar os dados institucionais",
+            "item": [
+                {
+                    "name": "Listar Institucional",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/institucional\/listar\/:categoria",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/institucional\/listar\/:categoria",
+                            "variable": [
+                                {
+                                    "id": "categoria",
+                                    "key": "categoria",
+                                    "value": "excepturi",
+                                    "description": "ID da categoria institucional"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para listar os dados institucionais da categoria",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Consultar Institucional",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/institucional\/detalhes\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/institucional\/detalhes\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "qui",
+                                    "description": "ID do institucional"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para consultar os dados de um registro institucional",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Listar Categorias",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/institucional\/categorias",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/institucional\/categorias"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para listar as categorias de institucional",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Consultar Categoria",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/institucional\/categorias\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/institucional\/categorias\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "et",
+                                    "description": "ID da categoria institucional"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para mostar os detalhes de uma categoria institucional",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Geral \/ Parceiros",
+            "description": "\nAPIs para gerenciar os dados de parceiros",
+            "item": [
+                {
+                    "name": "Listar Parceiros",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/parceiros",
+                            "query": [
+                                {
+                                    "key": "perPage",
+                                    "value": "15",
+                                    "description": "Registros por p\u00e1gina",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "6",
+                                    "description": "P\u00e1gina",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/parceiros?perPage=15&page=6"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para listar os parceiros",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Geral \/ Planos",
+            "description": "\nAPIs para gerenciar os dados de planos",
+            "item": [
+                {
+                    "name": "Listar Planos",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/plano",
+                            "query": [
+                                {
+                                    "key": "perPage",
+                                    "value": "19",
+                                    "description": "Registros por p\u00e1gina",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "7",
+                                    "description": "P\u00e1gina",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/plano?perPage=19&page=7"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para listar os planos",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Consultar Plano",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/plano\/:plano",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/plano\/:plano",
+                            "variable": [
+                                {
+                                    "id": "plano",
+                                    "key": "plano",
+                                    "value": "sapiente",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "natus",
+                                    "description": "ID do plano"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "M\u00e9todo para consultar os dados de um registro de plano",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Geral \/ Professor",
+            "description": "\nAPIs para gerenciar os dados de professores",
+            "item": [
+                {
+                    "name": "Listar Professores",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/professor",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/professor"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os professores ativos na plataforma",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Listar Hor\u00e1rios",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/geral\/professor\/horarios\/:professor",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/geral\/professor\/horarios\/:professor",
+                            "variable": [
+                                {
+                                    "id": "professor",
+                                    "key": "professor",
+                                    "value": "eligendi",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os hor\u00e1rios de um professor",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Professor \/ Aluno",
+            "description": "\nAPIs para gerenciar os alunos de professores",
+            "item": [
+                {
+                    "name": "Listar Alunos",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/professor\/aluno",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/professor\/aluno",
+                            "variable": [
+                                {
+                                    "id": "per_page",
+                                    "key": "per_page",
+                                    "value": "19",
+                                    "description": "Registros por p\u00e1gina."
+                                },
+                                {
+                                    "id": "page",
+                                    "key": "page",
+                                    "value": "13",
+                                    "description": "P\u00e1gina atual."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os dados dos alunos do professor"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Exibir Aluno",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/professor\/aluno\/:aluno",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/professor\/aluno\/:aluno",
+                            "variable": [
+                                {
+                                    "id": "aluno",
+                                    "key": "aluno",
+                                    "value": "rerum",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retorna os dados do perfil do aluno"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Professor \/ Onboarding",
+            "description": "\nAPIs para gerenciar as contas de professores",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/professor\/login",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/professor\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"teste@teste.com\",\n    \"senha\": \"teste123\"\n}"
+                        },
+                        "description": "Realiza o login para utilizar o painel",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer"
+    }
+}
